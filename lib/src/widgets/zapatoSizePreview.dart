@@ -33,8 +33,11 @@ class ZapatoConSombra extends StatelessWidget {
       padding: EdgeInsets.all(50.0),
       child: Stack(
         children: [
-          Image(image: AssetImage('assets/imgs/azul.png')),
-          _Sombra()
+          Positioned(
+            bottom: 20, right: 0,
+            child: _Sombra(),
+          ),
+          Image(image: AssetImage('assets/imgs/azul.png')),  
         ],
       ),
     );
@@ -50,7 +53,6 @@ class _Sombra extends StatelessWidget {
       child: Container(
         height: 100.0, width: 200.0,
         decoration: BoxDecoration(
-          color: Colors.red,
           borderRadius: BorderRadius.circular(100.0),
           boxShadow: <BoxShadow>[
             BoxShadow( color: Color(0xffEAA14E), blurRadius: 40.0)
