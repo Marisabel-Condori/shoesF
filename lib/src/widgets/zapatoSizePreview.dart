@@ -57,16 +57,18 @@ class _CajaTallaPersonalizado extends StatelessWidget {
       alignment: Alignment.center,
       child: Text('${this.numero.toString().replaceAll('.0', '')}', 
         style: TextStyle(
-          color: Color(0xffF1A23A),
-          fontSize: 16.0
+          color: (this.numero == 9) ? Colors.white : Color(0xffF1A23A),
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold
         ),
       ),
       width: 40.0, height: 40.0,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: (this.numero == 9) ? Color(0xffffa31a):Colors.white,
         borderRadius: BorderRadius.circular(5.0),
         boxShadow: [
-
+          if(this.numero == 9) 
+            BoxShadow( color: Color(0xffe68a00), blurRadius: 10.0, offset: Offset(0,5))
         ]
       ),
     );
