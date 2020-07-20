@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
 
 class ZapatoSizePreviewWidget extends StatelessWidget {
+  final bool screenSize;
+
+  ZapatoSizePreviewWidget({this.screenSize});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: (screenSize) ? 5.0 :30.0, 
+        vertical: (screenSize)? 4.0:5.0
+      ),
       child: Container(
         width: double.infinity,
-        height: 400.0,
+        height: (screenSize)?350.0  :400.0,
         decoration: BoxDecoration(
           color: Color(0xffF8D468),
-          borderRadius: BorderRadius.circular(50.0)
+          borderRadius: (!screenSize)
+          ? BorderRadius.circular(50.0)
+          : BorderRadius.only(bottomLeft: Radius.circular(40),
+                              bottomRight: Radius.circular(40)),
         ),
         child: Column(
           children: [
             //zapato con sombra
             ZapatoConSombra(),
             // tallas
-            _ZapatoTalla()
+            if(!screenSize)
+              _ZapatoTalla()
           ],
         ),
       ),
