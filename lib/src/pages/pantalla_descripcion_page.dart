@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:shoes_app/src/widgets/botonNaranjaWidget.dart';
 import 'package:shoes_app/src/widgets/descrip_zapato_widget.dart';
@@ -97,7 +98,7 @@ class _MontoByNow extends StatelessWidget {
         children: [
           Text('\$180.0', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
           Spacer(),
-          BotonNaranja(texto: 'By Now',),
+          Bounce(child: BotonNaranja(texto: 'By Now',)),
         ],
       ),
     );
@@ -115,10 +116,10 @@ class _ColoresYmas extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                Positioned(left: 90, child: _BotonColor(colorBtn: Color(0xffC6D642),)),
-                Positioned(left: 60,child: _BotonColor(colorBtn: Color(0xffFFAD29),)),
-                Positioned(left: 30,child: _BotonColor(colorBtn: Color(0xff2099F1),)),
-                _BotonColor(colorBtn: Color(0xff364D56),),
+                Positioned(left: 90, child: _BotonColor(colorBtn: Color(0xffC6D642),index: 4,)),
+                Positioned(left: 60,child: _BotonColor(colorBtn: Color(0xffFFAD29),index: 3,)),
+                Positioned(left: 30,child: _BotonColor(colorBtn: Color(0xff2099F1),index: 2,)),
+                _BotonColor(colorBtn: Color(0xff364D56),index: 1,),
                 
               ],
             )
@@ -135,15 +136,20 @@ class _ColoresYmas extends StatelessWidget {
 
 class _BotonColor extends StatelessWidget {
   final Color colorBtn;
-  _BotonColor({this.colorBtn});
+  final int index;
+  _BotonColor({this.colorBtn, this.index});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width:40 , height: 40,
-      decoration: BoxDecoration(
-        color: this.colorBtn,
-        borderRadius: BorderRadius.circular(20.0)
+    return FadeInLeft(
+      delay: Duration(milliseconds: this.index*100),
+      duration: Duration(milliseconds: 300),
+      child: Container(
+        width:40 , height: 40,
+        decoration: BoxDecoration(
+          color: this.colorBtn,
+          borderRadius: BorderRadius.circular(20.0)
+        ),
       ),
     );
   }
