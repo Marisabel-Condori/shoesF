@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoes_app/src/models/zapato_model.dart';
 import 'package:shoes_app/src/pages/pantalla_descripcion_page.dart';
 
 class ZapatoSizePreviewWidget extends StatelessWidget {
@@ -68,23 +70,30 @@ class _CajaTallaPersonalizado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Text('${this.numero.toString().replaceAll('.0', '')}', 
-        style: TextStyle(
-          color: (this.numero == 9) ? Colors.white : Color(0xffF1A23A),
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold
+    final zapatoModel = Provider.of<ZapatoModel>(context);
+    return GestureDetector(
+      onTap: () {
+        final zapatoModel = Provider.of<ZapatoModel>(context, listen: false);
+        zapatoModel.talla = this.numero;
+      },
+      child: Container(
+        alignment: Alignment.center,
+        child: Text('${this.numero.toString().replaceAll('.0', '')}', 
+          style: TextStyle(
+            color: (this.numero == zapatoModel.talla) ? Colors.white : Color(0xffF1A23A),
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold
+          ),
         ),
-      ),
-      width: 40.0, height: 40.0,
-      decoration: BoxDecoration(
-        color: (this.numero == 9) ? Color(0xffffa31a):Colors.white,
-        borderRadius: BorderRadius.circular(5.0),
-        boxShadow: [
-          if(this.numero == 9) 
-            BoxShadow( color: Color(0xffe68a00), blurRadius: 10.0, offset: Offset(0,5))
-        ]
+        width: 40.0, height: 40.0,
+        decoration: BoxDecoration(
+          color: (this.numero == zapatoModel.talla) ? Color(0xffffa31a):Colors.white,
+          borderRadius: BorderRadius.circular(5.0),
+          boxShadow: [
+            if(this.numero == zapatoModel.talla) 
+              BoxShadow( color: Color(0xffe68a00), blurRadius: 10.0, offset: Offset(0,5))
+          ]
+        ),
       ),
     );
   }
