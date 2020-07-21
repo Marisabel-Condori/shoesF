@@ -13,7 +13,10 @@ class PantallaDescripcionPage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ZapatoSizePreviewWidget( screenSize: true,),
+                Hero(
+                  tag: 'zapato-1',
+                  child: ZapatoSizePreviewWidget( screenSize: true,)
+                ),
                 Positioned(
                   top: 70.0,
                   child: FloatingActionButton(
