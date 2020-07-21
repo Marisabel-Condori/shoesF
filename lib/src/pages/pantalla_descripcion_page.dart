@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoes_app/src/models/zapato_model.dart';
 import 'package:shoes_app/src/widgets/botonNaranjaWidget.dart';
 import 'package:shoes_app/src/widgets/descrip_zapato_widget.dart';
 import 'package:shoes_app/src/widgets/zapatoSizePreview.dart';
@@ -116,10 +118,10 @@ class _ColoresYmas extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                Positioned(left: 90, child: _BotonColor(colorBtn: Color(0xffC6D642),index: 4,)),
-                Positioned(left: 60,child: _BotonColor(colorBtn: Color(0xffFFAD29),index: 3,)),
-                Positioned(left: 30,child: _BotonColor(colorBtn: Color(0xff2099F1),index: 2,)),
-                _BotonColor(colorBtn: Color(0xff364D56),index: 1,),
+                Positioned(left: 90, child: _BotonColor(colorBtn: Color(0xffC6D642),index: 4,url:'assets/imgs/verde.png')),
+                Positioned(left: 60,child: _BotonColor(colorBtn: Color(0xffFFAD29),index: 3,url:'assets/imgs/amarillo.png')),
+                Positioned(left: 30,child: _BotonColor(colorBtn: Color(0xff2099F1),index: 2,url:'assets/imgs/azul.png')),
+                _BotonColor(colorBtn: Color(0xff364D56),index: 1,url:'assets/imgs/negro.png'),
                 
               ],
             )
@@ -137,18 +139,25 @@ class _ColoresYmas extends StatelessWidget {
 class _BotonColor extends StatelessWidget {
   final Color colorBtn;
   final int index;
-  _BotonColor({this.colorBtn, this.index});
+  final String url;
+  _BotonColor({this.colorBtn, this.index, this.url});
 
   @override
   Widget build(BuildContext context) {
     return FadeInLeft(
       delay: Duration(milliseconds: this.index*100),
       duration: Duration(milliseconds: 300),
-      child: Container(
-        width:40 , height: 40,
-        decoration: BoxDecoration(
-          color: this.colorBtn,
-          borderRadius: BorderRadius.circular(20.0)
+      child: GestureDetector(
+        onTap: () {
+          final zapatoModel = Provider.of<ZapatoModel>(context, listen: false);
+          zapatoModel.assetImage = this.url;
+        },
+        child: Container(
+          width:40 , height: 40,
+          decoration: BoxDecoration(
+            color: this.colorBtn,
+            borderRadius: BorderRadius.circular(20.0)
+          ),
         ),
       ),
     );
