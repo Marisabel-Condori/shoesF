@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shoes_app/src/pages/pantalla_descripcion_page.dart';
 import 'package:shoes_app/src/pages/zapato_page.dart';
  
 void main() => runApp(MyApp());
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'ShoesApp',
       initialRoute: '/',
       routes: {
-        '/' : (BuildContext context) => PantallaDescripcionPage()
+        '/' : (BuildContext context) => ZapatoPage()
       },
     );
   }

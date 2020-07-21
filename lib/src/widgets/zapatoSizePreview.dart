@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoes_app/src/pages/pantalla_descripcion_page.dart';
 
 class ZapatoSizePreviewWidget extends StatelessWidget {
   final bool screenSize;
@@ -7,29 +8,33 @@ class ZapatoSizePreviewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: (screenSize) ? 5.0 :30.0, 
-        vertical: (screenSize)? 4.0:5.0
-      ),
-      child: Container(
-        width: double.infinity,
-        height: (screenSize)?350.0  :400.0,
-        decoration: BoxDecoration(
-          color: Color(0xffF8D468),
-          borderRadius: (!screenSize)
-          ? BorderRadius.circular(50.0)
-          : BorderRadius.only(bottomLeft: Radius.circular(40),
-                              bottomRight: Radius.circular(40)),
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context, MaterialPageRoute(builder: (BuildContext context) => PantallaDescripcionPage())),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: (screenSize) ? 5.0 :30.0, 
+          vertical: (screenSize)? 4.0:5.0
         ),
-        child: Column(
-          children: [
-            //zapato con sombra
-            ZapatoConSombra(),
-            // tallas
-            if(!screenSize)
-              _ZapatoTalla()
-          ],
+        child: Container(
+          width: double.infinity,
+          height: (screenSize)?350.0  :400.0,
+          decoration: BoxDecoration(
+            color: Color(0xffF8D468),
+            borderRadius: (!screenSize)
+            ? BorderRadius.circular(50.0)
+            : BorderRadius.only(bottomLeft: Radius.circular(40),
+                                bottomRight: Radius.circular(40)),
+          ),
+          child: Column(
+            children: [
+              //zapato con sombra
+              ZapatoConSombra(),
+              // tallas
+              if(!screenSize)
+                _ZapatoTalla()
+            ],
+          ),
         ),
       ),
     );

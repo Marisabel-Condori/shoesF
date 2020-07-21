@@ -21,7 +21,9 @@ class PantallaDescripcionPage extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     highlightElevation: 0,
-                    onPressed: (){}),
+                    onPressed: (){
+                      Navigator.pop(context);
+                    }),
                 )
               ],
             ),
